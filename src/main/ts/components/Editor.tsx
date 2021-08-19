@@ -31,6 +31,7 @@ export interface IProps {
   disabled: boolean;
   textareaName: string;
   tinymceScriptSrc: string;
+  version: string;
   scriptLoading: {
     async?: boolean;
     defer?: boolean;
@@ -120,7 +121,7 @@ export class Editor extends React.Component<IAllProps> {
   }
 
   public componentDidMount() {
-    if (getTinymce() !== null) {
+    if (getTinymce(this.props.version) !== null) {
       this.initialise();
     } else if (this.elementRef.current && this.elementRef.current.ownerDocument) {
       ScriptLoader.load(
@@ -303,7 +304,7 @@ export class Editor extends React.Component<IAllProps> {
       return;
     }
 
-    const tinymce = getTinymce();
+    const tinymce = getTinymce(this.props.version);
     if (!tinymce) {
       throw new Error('tinymce should have been loaded into global scope');
     }
