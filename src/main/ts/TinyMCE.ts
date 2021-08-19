@@ -13,7 +13,7 @@ const getGlobal = (): any => (typeof window !== 'undefined' ? window : global);
 const getTinymce = (): TinyMCEGlobal | null => {
   const global = getGlobal();
 
-  return global && global.tinymce ? global.tinymce : null;
+  return global ? global.tinymce5 || global.tinymce : null;
 };
 
 export { getTinymce };
