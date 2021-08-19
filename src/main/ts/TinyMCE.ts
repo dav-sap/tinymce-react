@@ -10,10 +10,10 @@ import { TinyMCE as TinyMCEGlobal } from 'tinymce';
 
 const getGlobal = (): any => (typeof window !== 'undefined' ? window : global);
 
-const getTinymce = (version): TinyMCEGlobal | null => {
+const getTinymce = (version: unknown): TinyMCEGlobal | null => {
   const global = getGlobal();
   if (version === '5') {
-    return global ? global.tinymce5 : null;  
+    return global ? global.tinymce5 : null;
   }
   return global ? global.tinymce : null;
 };
