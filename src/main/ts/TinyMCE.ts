@@ -10,10 +10,12 @@ import { TinyMCE as TinyMCEGlobal } from 'tinymce';
 
 const getGlobal = (): any => (typeof window !== 'undefined' ? window : global);
 
-const getTinymce = (): TinyMCEGlobal | null => {
+const getTinymce = (version): TinyMCEGlobal | null => {
   const global = getGlobal();
-
-  return global ? global.tinymce5 || global.tinymce : null;
+  if (version === '5') {
+    return global ? global.tinymce5 : null;  
+  }
+  return global ? global.tinymce : null;
 };
 
 export { getTinymce };
